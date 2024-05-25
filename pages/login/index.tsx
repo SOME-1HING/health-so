@@ -3,13 +3,13 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useAccount } from "wagmi";
-import Landing from "./landing";
-import Login from "./login";
+import { useRouter } from "next/router";
 
-const Home: NextPage = () => {
+const Login: NextPage = () => {
+  const router = useRouter();
   const { address } = useAccount();
-  if (address) return <Landing />;
-  else return <Login />;
+  if (address) router.push("/landing");
+  return <ConnectButton />;
 };
 
-export default Home;
+export default Login;
